@@ -58,7 +58,7 @@ function App() {
       <section className="hero">
         <h2>Food Safety Analysis</h2>
         <p>
-          مواد غذایی را وارد کنید تا ایمنی کیفیت آلرنها و سطح ریسک بررسی شود.
+          مواد غذایی را وارد کنید تا ایمنی،کیفیت،آلرژن‌ها و سطح ریسک بررسی شود.
         </p>
       </section>
 
@@ -73,7 +73,7 @@ function App() {
             required
           />
 
-          <label>مواد تشکیلدهنده</label>
+          <label>مواد تشکیل‌دهنده</label>
           <textarea
             placeholder="raw chicken, egg, milk"
             value={ingredients}
