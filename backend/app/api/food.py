@@ -1,10 +1,10 @@
 ﻿from fastapi import APIRouter
 
-from backend.app.schemas.food import (
+from app.schemas.food import (
     FoodAnalysisRequest,
     FoodAnalysisResponse,
 )
-from backend.app.services.food_analysis import analyze_food
+from app.services.food_analysis import analyze_food
 
 
 router = APIRouter(prefix="/api/food", tags=["Food Analysis"])

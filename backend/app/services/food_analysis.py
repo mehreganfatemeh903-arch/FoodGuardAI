@@ -1,4 +1,4 @@
-﻿from backend.app.schemas.food import (
+﻿from app.schemas.food import (
     FoodAnalysisRequest,
     FoodAnalysisResponse,
 )

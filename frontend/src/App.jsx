@@ -12,24 +12,28 @@ function App() {
 
   const analyzeFood = async (e) => {
     e.preventDefault();
+
     setLoading(true);
     setError("");
     setResult(null);
 
     try {
-      const response = await fetch(`${API_URL}/api/food/analyze`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          food_name: foodName,
-          ingredients: ingredients
-            .split(",")
-            .map((item) => item.trim())
-            .filter(Boolean),
-        }),
-      });
+      const response = await fetch(
+        `${API_URL}/api/food/analyze`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            food_name: foodName,
+            ingredients: ingredients
+              .split(",")
+              .map((item) => item.trim())
+              .filter(Boolean),
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Analysis request failed");
@@ -37,7 +41,7 @@ function App() {
 
       const data = await response.json();
       setResult(data);
-        } catch (err) {
+    } catch (err) {
       console.error("FoodGuardAI API error:", err);
       setError(err.message || "خطای نامشخص در درخواست API");
     } finally {
@@ -48,94 +52,172 @@ function App() {
   return (
     <main className="app">
       <header className="header">
-        <div>
-          <h1>🛡️ FoodGuardAI</h1>
-          <p>AI-powered Food Safety & Quality Analysis</p>
+        <div className="brand">
+          <div className="brand-icon">🛡️</div>
+
+          <div>
+            <h1>FoodGuardAI</h1>
+            <p>AI-powered Food Safety & Quality Analysis</p>
+          </div>
         </div>
-        <span className="status">● API Ready</span>
+
+        <div className="status">
+          <span className="status-dot"></span>
+          API Ready
+        </div>
       </header>
 
       <section className="hero">
+        <div className="hero-badge">AI FOOD SAFETY</div>
+
         <h2>Food Safety Analysis</h2>
+
         <p>
-          مواد غذایی را وارد کنید تا ایمنی،کیفیت،آلرژن‌ها و سطح ریسک بررسی شود.
+          مواد غذایی را وارد کنید تا ایمنی، کیفیت، آلرژن‌ها و سطح ریسک
+          به‌صورت هوشمند بررسی شود.
         </p>
       </section>
 
-      <section className="card">
+      <section className="card analysis-card">
+        <div className="card-header">
+          <div>
+            <h3>Analyze Your Food</h3>
+            <p>اطلاعات غذا و مواد تشکیل‌دهنده را وارد کنید.</p>
+          </div>
+
+          <span className="card-icon">🔍</span>
+        </div>
+
         <form onSubmit={analyzeFood}>
-          <label>نام غذا</label>
-          <input
-            type="text"
-            placeholder="مثلاً Raw Chicken"
-            value={foodName}
-            onChange={(e) => setFoodName(e.target.value)}
-            required
-          />
+          <div className="form-group">
+            <label htmlFor="foodName">نام غذا</label>
 
-          <label>مواد تشکیل‌دهنده</label>
-          <textarea
-            placeholder="raw chicken, egg, milk"
-            value={ingredients}
-            onChange={(e) => setIngredients(e.target.value)}
-            required
-          />
+            <input
+              id="foodName"
+              type="text"
+              placeholder="مثلاً Raw Chicken"
+              value={foodName}
+              onChange={(e) => setFoodName(e.target.value)}
+              required
+            />
+          </div>
 
-          <button type="submit" disabled={loading}>
-            {loading ? "در حال تحلیل..." : "🔍 Analyze Food"}
+          <div className="form-group">
+            <label htmlFor="ingredients">مواد تشکیل‌دهنده</label>
+
+            <textarea
+              id="ingredients"
+              placeholder="raw chicken, egg, milk"
+              value={ingredients}
+              onChange={(e) => setIngredients(e.target.value)}
+              required
+            />
+
+            <span className="input-help">
+              مواد را با کاما (,) از یکدیگر جدا کنید.
+            </span>
+          </div>
+
+          <button
+            className="analyze-button"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <span className="spinner"></span>
+                در حال تحلیل...
+              </>
+            ) : (
+              <>
+                <span>🔍</span>
+                Analyze Food
+              </>
+            )}
           </button>
         </form>
       </section>
 
-      {error && <div className="error">{error}</div>}
+      {error && (
+        <div className="error">
+          <span>⚠️</span>
+
+          <div>
+            <strong>Analysis Error</strong>
+            <p>{error}</p>
+          </div>
+        </div>
+      )}
 
       {result && (
         <section className="result">
-          <h2>{result.food_name}</h2>
-
-          <div className="scores">
-            <div className="score">
-              <span>Safety Score</span>
-              <strong>{result.safety_score}</strong>
-              <small>/ 100</small>
+          <div className="result-header">
+            <div>
+              <span className="result-label">ANALYSIS RESULT</span>
+              <h2>{result.food_name}</h2>
             </div>
 
-            <div className="score">
-              <span>Quality Score</span>
-              <strong>{result.quality_score}</strong>
-              <small>/ 100</small>
-            </div>
-
-            <div className={`risk ${result.risk_level}`}>
+            <div className={`risk risk-${result.risk_level}`}>
+              <span className="risk-dot"></span>
               Risk: {result.risk_level.toUpperCase()}
             </div>
           </div>
 
-          {result.recommendations.length > 0 && (
+          <div className="scores">
+            <div className="score-card">
+              <span className="score-icon">🛡️</span>
+              <span className="score-title">Safety Score</span>
+              <strong>{result.safety_score}</strong>
+              <small>/ 100</small>
+            </div>
+
+            <div className="score-card">
+              <span className="score-icon">⭐</span>
+              <span className="score-title">Quality Score</span>
+              <strong>{result.quality_score}</strong>
+              <small>/ 100</small>
+            </div>
+          </div>
+
+          {result.recommendations.length > 0 ? (
             <div className="recommendations">
-              <h3>Recommendations</h3>
+              <div className="recommendations-title">
+                <span>💡</span>
+                <h3>Recommendations</h3>
+              </div>
+
               <ul>
                 {result.recommendations.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li key={index}>
+                    <span>✓</span>
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>
-          )}
-
-          {result.recommendations.length === 0 && (
+          ) : (
             <div className="safe">
-              ✓ No immediate safety concerns detected.
+              <span>✓</span>
+
+              <div>
+                <strong>No Immediate Safety Concerns</strong>
+                <p>
+                  No immediate safety concerns were detected in this analysis.
+                </p>
+              </div>
             </div>
           )}
         </section>
       )}
 
       <footer>
-        FoodGuardAI v0.1.0 · FastAPI + React
+        <strong>FoodGuardAI</strong>
+        <span>v0.1.0</span>
+        <span>·</span>
+        <span>FastAPI + React</span>
       </footer>
     </main>
   );
 }
 
 export default App;
-
