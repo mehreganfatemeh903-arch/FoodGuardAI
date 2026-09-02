@@ -1,4 +1,4 @@
-﻿[project]
+[project]
 name = "foodguardai"
 version = "1.0.0"
 description = "AI-powered food safety and allergen analysis API"
