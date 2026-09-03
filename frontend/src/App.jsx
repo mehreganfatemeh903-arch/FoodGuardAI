@@ -3,6 +3,12 @@ import "./App.css";
 
 const API_URL = "https://foodguardai.fastapicloud.dev";
 
+const RISK_LABELS = {
+  low: "کم",
+  medium: "متوسط",
+  high: "زیاد",
+};
+
 function App() {
   const [foodName, setFoodName] = useState("");
   const [ingredients, setIngredients] = useState("");
@@ -54,20 +60,20 @@ function App() {
 
           <div>
             <h1>FoodGuardAI</h1>
-            <p>AI-powered Food Safety & Quality Analysis</p>
+            <p>تحلیل هوشمند ایمنی و کیفیت غذا</p>
           </div>
         </div>
 
         <div className="status">
           <span className="status-dot"></span>
-          API Ready
+          سرویس آماده است
         </div>
       </header>
 
       <section className="hero">
-        <div className="hero-badge">AI FOOD SAFETY</div>
+        <div className="hero-badge">ایمنی غذایی هوشمند</div>
 
-        <h2>Food Safety Analysis</h2>
+        <h2>تحلیل ایمنی غذا</h2>
 
         <p>
           مواد غذایی را وارد کنید تا ایمنی، کیفیت، آلرژن‌ها و سطح ریسک به‌صورت هوشمند بررسی شود.
@@ -77,7 +83,7 @@ function App() {
       <section className="card analysis-card">
         <div className="card-header">
           <div>
-            <h3>Analyze Your Food</h3>
+            <h3>تحلیل غذای شما</h3>
             <p>اطلاعات غذا و مواد تشکیل‌دهنده را وارد کنید.</p>
           </div>
 
@@ -127,7 +133,7 @@ function App() {
             ) : (
               <>
                 <span>💡</span>
-                Analyze Food
+                تحلیل غذا
               </>
             )}
           </button>
@@ -139,7 +145,7 @@ function App() {
           <span>⚠️</span>
 
           <div>
-            <strong>Analysis Error</strong>
+            <strong>خطا در تحلیل</strong>
             <p>{error}</p>
           </div>
         </div>
@@ -149,27 +155,27 @@ function App() {
         <section className="result" aria-live="polite">
           <div className="result-header">
             <div>
-              <span className="result-label">ANALYSIS RESULT</span>
+              <span className="result-label">نتیجه تحلیل</span>
               <h2>{result.food_name}</h2>
             </div>
 
             <div className={`risk risk-${result.risk_level}`}>
               <span className="risk-dot"></span>
-              Risk: {result.risk_level.toUpperCase()}
+              سطح ریسک: {RISK_LABELS[result.risk_level] || result.risk_level}
             </div>
           </div>
 
           <div className="scores">
             <div className="score-card">
               <span className="score-icon">🛡️</span>
-              <span className="score-title">Safety Score</span>
+              <span className="score-title">امتیاز ایمنی</span>
               <strong>{result.safety_score}</strong>
               <small>/ 100</small>
             </div>
 
             <div className="score-card">
               <span className="score-icon">✨</span>
-              <span className="score-title">Quality Score</span>
+              <span className="score-title">امتیاز کیفیت</span>
               <strong>{result.quality_score}</strong>
               <small>/ 100</small>
             </div>
@@ -179,7 +185,7 @@ function App() {
             <div className="recommendations">
               <div className="recommendations-title">
                 <span>💡</span>
-                <h3>Recommendations</h3>
+                <h3>توصیه‌ها</h3>
               </div>
 
               <ul>
@@ -196,9 +202,9 @@ function App() {
               <span>✨</span>
 
               <div>
-                <strong>No Immediate Safety Concerns</strong>
+                <strong>نگرانی ایمنی فوری وجود ندارد</strong>
                 <p>
-                  No immediate safety concerns were detected in this analysis.
+                  در این تحلیل هیچ نگرانی ایمنی فوری‌ای شناسایی نشد.
                 </p>
               </div>
             </div>
@@ -209,13 +215,10 @@ function App() {
       <footer>
         <strong>FoodGuardAI</strong>
         <span>·</span>
-        <span>FastAPI + React</span>
+        <span>قدرت‌گرفته از FastAPI و React</span>
       </footer>
     </main>
   );
 }
 
 export default App;
-
-
-
