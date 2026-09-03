@@ -1,8 +1,7 @@
-﻿from app.schemas.food import (
+﻿from ..schemas.food import (
     FoodAnalysisRequest,
     FoodAnalysisResponse,
 )
-
 
 HIGH_RISK_INGREDIENTS = {
     "raw chicken",
@@ -11,7 +10,6 @@ HIGH_RISK_INGREDIENTS = {
     "raw egg",
     "unpasteurized milk",
 }
-
 
 ALLERGENS = {
     "milk",
@@ -23,7 +21,6 @@ ALLERGENS = {
     "fish",
     "shellfish",
 }
-
 
 LOW_QUALITY_INGREDIENTS = {
     "sugar",
@@ -37,11 +34,8 @@ LOW_QUALITY_INGREDIENTS = {
 
 def calculate_quality_score(ingredients: set[str]) -> float:
     score = 100.0
-
     low_quality = ingredients.intersection(LOW_QUALITY_INGREDIENTS)
-
     score -= min(60.0, len(low_quality) * 15.0)
-
     return max(0.0, score)
 
 
@@ -49,13 +43,14 @@ def analyze_food(data: FoodAnalysisRequest) -> FoodAnalysisResponse:
     ingredients = {
         ingredient.strip().lower()
         for ingredient in data.ingredients
+        if ingredient.strip()
     }
 
     high_risk = ingredients.intersection(HIGH_RISK_INGREDIENTS)
     allergens = ingredients.intersection(ALLERGENS)
 
     safety_score = 100.0
-    recommendations = []
+    recommendations: list[str] = []
 
     if high_risk:
         safety_score -= min(60.0, len(high_risk) * 60.0)
@@ -69,7 +64,6 @@ def analyze_food(data: FoodAnalysisRequest) -> FoodAnalysisResponse:
         )
 
     safety_score = max(0.0, safety_score)
-
     quality_score = calculate_quality_score(ingredients)
 
     if safety_score >= 80:
@@ -80,10 +74,9 @@ def analyze_food(data: FoodAnalysisRequest) -> FoodAnalysisResponse:
         risk_level = "high"
 
     return FoodAnalysisResponse(
-        food_name=data.food_name,
+        food_name=data.food_name.strip(),
         safety_score=safety_score,
         quality_score=quality_score,
         risk_level=risk_level,
         recommendations=recommendations,
     )
-

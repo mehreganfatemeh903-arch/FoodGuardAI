@@ -1,10 +1,8 @@
-from fastapi import FastAPI
+﻿from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-
-
-from app.api.food import router as food_router
-from app.core.config import settings
+from .api.food import router as food_router
+from .core.config import settings
 
 app = FastAPI(
     title=settings.app_name,
@@ -16,7 +14,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-              "http://localhost:5173",
+        "http://localhost:5173",
         "https://mehreganfatemeh903-arch.github.io",
         "http://127.0.0.1:5173",
         "http://localhost:5174",
@@ -46,6 +44,3 @@ def health():
         "service": settings.app_name,
         "environment": settings.app_env,
     }
-
-
-

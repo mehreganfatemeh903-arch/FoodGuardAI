@@ -1,10 +1,13 @@
-[project]
+﻿[project]
 name = "foodguardai"
-version = "1.0.0"
+version = "0.1.0"
 description = "AI-powered food safety and allergen analysis API"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "python-dotenv>=1.0",
 ]
 
 [tool.fastapi]

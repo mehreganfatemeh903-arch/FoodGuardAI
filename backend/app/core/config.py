@@ -4,11 +4,10 @@
 class Settings(BaseSettings):
     app_name: str = "FoodGuardAI"
     app_env: str = "development"
-    debug: bool = True
+    debug: bool = False
 
     model_config = SettingsConfigDict(
         env_file=".env",
-        env_file_encoding="utf-8",
         extra="ignore",
     )
 

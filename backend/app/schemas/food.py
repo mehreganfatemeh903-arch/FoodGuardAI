@@ -3,7 +3,7 @@
 
 class FoodAnalysisRequest(BaseModel):
     food_name: str = Field(..., min_length=1, max_length=200)
-    ingredients: list[str] = Field(default_factory=list)
+    ingredients: list[str] = Field(..., min_length=1)
 
 
 class FoodAnalysisResponse(BaseModel):

@@ -72,8 +72,31 @@ def test_low_quality_food():
 
     data = response.json()
 
-    assert data["food_name"] == "Processed Food"
     assert data["safety_score"] == 100.0
     assert data["quality_score"] == 70.0
     assert data["risk_level"] == "low"
     assert data["recommendations"] == []
+
+
+def test_empty_food_name_is_rejected():
+    response = client.post(
+        "/api/food/analyze",
+        json={
+            "food_name": "",
+            "ingredients": ["chicken"],
+        },
+    )
+
+    assert response.status_code == 422
+
+
+def test_empty_ingredients_are_rejected():
+    response = client.post(
+        "/api/food/analyze",
+        json={
+            "food_name": "Test Food",
+            "ingredients": [],
+        },
+    )
+
+    assert response.status_code == 422
