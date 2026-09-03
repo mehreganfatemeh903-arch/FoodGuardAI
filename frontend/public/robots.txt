@@ -1,0 +1,4 @@
+﻿User-agent: *
+Allow: /
+
+Sitemap: https://mehreganfatemeh903-arch.github.io/FoodGuardAI/sitemap.xml
