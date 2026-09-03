@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import "./App.css";
 
 const API_URL = "https://foodguardai.fastapicloud.dev"
@@ -53,7 +53,7 @@ function App() {
     <main className="app">
       <header className="header">
         <div className="brand">
-          <div className="brand-icon">???</div>
+          <div className="brand-icon">🛡️</div>
 
           <div>
             <h1>FoodGuardAI</h1>
@@ -85,7 +85,7 @@ function App() {
             <p>اطلاعات غذا و مواد تشکيل‌دهنده را وارد کنيد.</p>
           </div>
 
-          <span className="card-icon">??</span>
+          <span className="card-icon">🔍</span>
         </div>
 
         <form onSubmit={analyzeFood}>
@@ -221,3 +221,4 @@ function App() {
 }
 
 export default App;
+
