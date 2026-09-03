@@ -1,4 +1,4 @@
-.app {
+﻿.app {
   width: 100%;
   min-height: 100vh;
   padding: 28px 20px 18px;
@@ -225,6 +225,11 @@ textarea:focus {
 .analyze-button:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 14px 28px rgba(37, 99, 235, 0.26);
+}
+
+.analyze-button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.25);
+  outline-offset: 3px;
 }
 
 .analyze-button:disabled {
@@ -520,6 +525,18 @@ footer strong {
     align-items: flex-start;
   }
 
+  .brand {
+    min-width: 0;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .status {
+    white-space: nowrap;
+  }
+
   .scores {
     grid-template-columns: 1fr;
   }
@@ -530,6 +547,20 @@ footer strong {
 
   .hero h2 {
     font-size: 29px;
+  }
+
+  .hero p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .card,
+  .result {
+    padding: 18px;
+  }
+
+  .result h2 {
+    font-size: 22px;
   }
 
   footer {

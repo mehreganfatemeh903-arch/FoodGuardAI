@@ -1,7 +1,7 @@
 ﻿import { useState } from "react";
 import "./App.css";
 
-const API_URL = "https://foodguardai.fastapicloud.dev"
+const API_URL = "https://foodguardai.fastapicloud.dev";
 
 function App() {
   const [foodName, setFoodName] = useState("");
@@ -18,22 +18,19 @@ function App() {
     setResult(null);
 
     try {
-      const response = await fetch(
-        `${API_URL}/api/food/analyze`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            food_name: foodName,
-            ingredients: ingredients
-              .split(",")
-              .map((item) => item.trim())
-              .filter(Boolean),
-          }),
-        }
-      );
+      const response = await fetch(`${API_URL}/api/food/analyze`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          food_name: foodName,
+          ingredients: ingredients
+            .split(",")
+            .map((item) => item.trim())
+            .filter(Boolean),
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Analysis request failed");
@@ -43,7 +40,7 @@ function App() {
       setResult(data);
     } catch (err) {
       console.error("FoodGuardAI API error:", err);
-      setError(err.message || "خطاي نامشخص در درخواست API");
+      setError(err.message || "خطای نامشخص در درخواست API");
     } finally {
       setLoading(false);
     }
@@ -73,8 +70,8 @@ function App() {
         <h2>Food Safety Analysis</h2>
 
         <p>
-          مواد غذايي را وارد کنيد تا ايمني، کيفيت، آلرژن‌ها و سطح ريسک
-          به‌صورت هوشمند بررسي شود.
+          مواد غذایی را وارد کنید تا ایمنی کیفیت آلرنها و سطح ریسک
+          بهصورت هوشمند بررسی شود.
         </p>
       </section>
 
@@ -82,7 +79,7 @@ function App() {
         <div className="card-header">
           <div>
             <h3>Analyze Your Food</h3>
-            <p>اطلاعات غذا و مواد تشکيل‌دهنده را وارد کنيد.</p>
+            <p>اطلاعات غذا و مواد تشکیلدهنده را وارد کنید.</p>
           </div>
 
           <span className="card-icon">🔍</span>
@@ -95,7 +92,7 @@ function App() {
             <input
               id="foodName"
               type="text"
-              placeholder="مثلاً Raw Chicken"
+              placeholder="مثلاً کیک شکلاتی"
               value={foodName}
               onChange={(e) => setFoodName(e.target.value)}
               required
@@ -103,18 +100,18 @@ function App() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="ingredients">مواد تشکيل‌دهنده</label>
+            <label htmlFor="ingredients">مواد تشکیلدهنده</label>
 
             <textarea
               id="ingredients"
-              placeholder="raw chicken, egg, milk"
+              placeholder="آرد تخم مرغ شیر شکلات"
               value={ingredients}
               onChange={(e) => setIngredients(e.target.value)}
               required
             />
 
             <span className="input-help">
-              مواد را با کاما (,) از يکديگر جدا کنيد.
+              مواد را با کاما (,) از یکدیگر جدا کنید.
             </span>
           </div>
 
@@ -126,7 +123,7 @@ function App() {
             {loading ? (
               <>
                 <span className="spinner"></span>
-                در حال تحليل...
+                در حال تحلیل...
               </>
             ) : (
               <>
@@ -139,8 +136,8 @@ function App() {
       </section>
 
       {error && (
-        <div className="error">
-          <span>💡</span>
+        <div className="error" role="alert">
+          <span>⚠️</span>
 
           <div>
             <strong>Analysis Error</strong>
@@ -150,7 +147,7 @@ function App() {
       )}
 
       {result && (
-        <section className="result">
+        <section className="result" aria-live="polite">
           <div className="result-header">
             <div>
               <span className="result-label">ANALYSIS RESULT</span>
@@ -212,7 +209,6 @@ function App() {
 
       <footer>
         <strong>FoodGuardAI</strong>
-        <span>v0.1.0</span>
         <span>·</span>
         <span>FastAPI + React</span>
       </footer>
@@ -221,4 +217,3 @@ function App() {
 }
 
 export default App;
-

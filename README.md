@@ -1,349 +1,252 @@
-# FoodGuardAI
+﻿# FoodGuardAI
 
-**AI-powered food safety and quality analysis API built with FastAPI.**
+AI-powered food safety and quality analysis platform built with FastAPI and React.
 
-FoodGuardAI is a backend API designed to analyze food ingredients and provide food safety and quality insights, including safety scoring, quality scoring, risk classification, allergen detection, and practical recommendations.
+FoodGuardAI analyzes food names and ingredients to provide safety risk assessment, safety score, quality score, and recommendations through a clean web interface and production-ready REST API.
 
-> **Current status:** Functional FastAPI backend with rule-based food analysis. The `ml/` directory is reserved for future machine-learning components.
+## Live Demo
+
+- Frontend: https://mehreganfatemeh903-arch.github.io/FoodGuardAI/
+- API: https://foodguardai.fastapicloud.dev
+- API Documentation: https://foodguardai.fastapicloud.dev/docs
+- GitHub: https://github.com/mehreganfatemeh903-arch/FoodGuardAI
 
 ## Features
 
-* Food safety analysis
-* Detection of high-risk ingredients
-* Common allergen detection
-* Food quality scoring
-* Risk classification: `low`, `medium`, `high`
-* REST API with FastAPI
-* Interactive Swagger API documentation
-* ReDoc API documentation
-* Health check endpoint
-* Environment-based configuration
-* Automated tests with pytest
-* Clean modular project structure
-* Ready for future machine-learning integration
+- Food safety analysis
+- Ingredient-based risk assessment
+- Safety score from 0 to 100
+- Quality score from 0 to 100
+- Risk level classification
+- Safety recommendations
+- Persian-friendly food and ingredient input
+- Responsive modern web interface
+- FastAPI REST API
+- React + Vite frontend
+- Interactive API documentation
+- Automated frontend deployment
+- Backend automated testing
+- GitHub Pages deployment
+- Production FastAPI deployment
 
-## Project Structure
+## Architecture
 
-```text
-FoodGuardAI/
-├── backend/
-│   ├── app/
-│   │   ├── api/
-│   │   │   └── food.py
-│   │   ├── core/
-│   │   │   └── config.py
-│   │   ├── models/
-│   │   ├── schemas/
-│   │   │   └── food.py
-│   │   ├── services/
-│   │   │   └── food_analysis.py
-│   │   └── main.py
-│   └── tests/
-│       ├── test_food.py
-│       └── test_main.py
-├── ml/
-│   ├── src/
-│   └── tests/
+FoodGuardAI
+├── backend
+│   ├── app
+│   │   ├── api
+│   │   ├── core
+│   │   ├── models
+│   │   ├── schemas
+│   │   └── services
+│   └── tests
+├── frontend
+│   ├── public
+│   └── src
+├── ml
+├── .github
+│   └── workflows
 ├── requirements.txt
 ├── pytest.ini
-├── .env.example
-├── .gitignore
 └── README.md
-```
 
 ## Technology Stack
 
-* **Python 3.12+**
-* **FastAPI**
-* **Uvicorn**
-* **Pydantic**
-* **Pydantic Settings**
-* **Pytest**
-* **HTTPX**
+### Backend
 
-## Requirements
+- Python
+- FastAPI
+- Uvicorn
+- Pydantic
+- Pydantic Settings
+- Pytest
+- HTTPX
 
-* Python 3.12 or newer
-* pip
-* Git
-* Virtual environment
+### Frontend
 
-## Installation
+- React
+- Vite
+- JavaScript
+- CSS
 
-Clone the repository:
+### Deployment
 
-```bash
-git clone https://github.com/mehreganfatemeh903-arch/FoodGuardAI.git
-cd FoodGuardAI
-```
+- FastAPI Cloud
+- GitHub Pages
+- GitHub Actions
 
-Create a virtual environment:
+## API
 
-### Windows PowerShell
+### Analyze Food
 
-```powershell
-python -m venv .venv
-```
-
-Activate it:
-
-```powershell
-.venv\Scripts\Activate.ps1
-```
-
-Install dependencies:
-
-```powershell
-pip install -r requirements.txt
-```
-
-## Configuration
-
-Create a `.env` file in the project root based on `.env.example`.
-
-Example:
-
-```env
-APP_NAME=FoodGuardAI
-APP_ENV=development
-DEBUG=true
-```
-
-The application uses environment-based configuration through `pydantic-settings`.
-
-## Run the API
-
-Start the development server:
-
-```powershell
-uvicorn backend.app.main:app --reload
-```
-
-The API will be available at:
-
-```text
-http://127.0.0.1:8000
-```
-
-## API Documentation
-
-FastAPI automatically provides interactive API documentation.
-
-### Swagger UI
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-### ReDoc
-
-```text
-http://127.0.0.1:8000/redoc
-```
-
-## API Endpoints
-
-### Root
-
-```http
-GET /
-```
-
-Example response:
-
-```json
-{
-  "message": "FoodGuardAI API is running",
-  "version": "0.1.0",
-  "environment": "development"
-}
-```
-
-### Health Check
-
-```http
-GET /health
-```
-
-Example response:
-
-```json
-{
-  "status": "ok",
-  "service": "FoodGuardAI",
-  "environment": "development"
-}
-```
-
-### Food Analysis
-
-```http
 POST /api/food/analyze
-```
 
 Example request:
 
-```json
 {
-  "food_name": "Raw Chicken",
+  "food_name": "Chocolate Cake",
   "ingredients": [
-    "raw chicken",
+    "flour",
     "egg",
-    "milk"
+    "milk",
+    "chocolate",
+    "butter"
   ]
 }
-```
 
 Example response:
 
-```json
 {
-  "food_name": "Raw Chicken",
-  "safety_score": 40.0,
-  "quality_score": 100.0,
-  "risk_level": "high",
-  "recommendations": [
-    "High-risk ingredients detected. Ensure proper cooking and storage.",
-    "Potential allergens detected: egg, milk."
-  ]
+  "food_name": "Chocolate Cake",
+  "risk_level": "low",
+  "safety_score": 100,
+  "quality_score": 100,
+  "recommendations": []
 }
-```
 
-## Analysis Logic
+## Local Development
 
-### Safety Score
+### Clone the repository
 
-The safety score starts at `100`.
+git clone https://github.com/mehreganfatemeh903-arch/FoodGuardAI.git
+cd FoodGuardAI
 
-High-risk ingredients can reduce the safety score. The resulting score is used to determine the food risk level.
+### Create and activate virtual environment
 
-Current high-risk ingredients include:
+Windows PowerShell:
 
-* Raw chicken
-* Raw meat
-* Raw fish
-* Raw egg
-* Unpasteurized milk
+python -m venv .venv
+.venv\Scripts\Activate.ps1
 
-### Quality Score
+### Install backend dependencies
 
-The quality score starts at `100`.
+pip install -r requirements.txt
 
-Ingredients associated with lower food quality reduce the score.
+### Run backend
 
-Current low-quality ingredients include:
+uvicorn backend.app.main:app --reload
 
-* Sugar
-* High fructose corn syrup
-* Trans fat
-* Hydrogenated oil
-* Artificial flavor
-* Artificial color
+Local API:
 
-### Allergen Detection
+http://127.0.0.1:8000
 
-FoodGuardAI currently checks for common allergens including:
+API documentation:
 
-* Milk
-* Egg
-* Peanut
-* Nuts
-* Soy
-* Wheat
-* Fish
-* Shellfish
+http://127.0.0.1:8000/docs
 
-### Risk Classification
+### Run frontend
 
-The API classifies the result into three levels:
+Open another terminal:
 
-```text
-80 - 100  → low
-50 - 79   → medium
-0 - 49    → high
-```
+cd frontend
+npm install
+npm run dev
 
 ## Testing
 
-Run the complete test suite:
+Run the backend test suite from the project root:
 
-```powershell
 pytest -q
-```
 
-Current verified result:
+Current verification:
 
-```text
 5 passed
-```
 
-The test suite covers the main API functionality, including:
+The project currently passes all backend tests. A dependency deprecation warning may be displayed by the testing environment, but it does not cause test failure.
 
-* Normal food analysis
-* High-risk ingredient detection
-* Allergen detection
-* Low-quality ingredient scoring
-* Root and health endpoints
+## Production Build
 
-## Current Project Status
+Build the frontend:
 
-FoodGuardAI currently provides a functional and tested FastAPI backend for rule-based food safety and quality analysis.
+cd frontend
+npm run build
 
-The current implementation is intentionally rule-based and provides a clean foundation for future development.
+Production files are generated in:
 
-The `ml/` directory is reserved for future machine-learning functionality, such as:
+frontend/dist
 
-* Ingredient classification
-* Food image analysis
-* Risk prediction
-* Nutritional analysis
-* Machine-learning based food quality prediction
+## Environment Variables
 
-## Development Roadmap
+Sensitive configuration must be stored in environment variables and must not be committed to Git.
 
-Future development may include:
+Use .env.example as the configuration template.
 
-* Machine-learning models
-* Food image recognition
-* Nutrition and calorie analysis
-* Database integration
-* User authentication
-* Analysis history
-* Frontend web application
-* Production deployment
-* Automated CI/CD
-* Expanded food and allergen databases
+## Deployment
 
-## Project Verification
+### Frontend
 
-The current project has been verified locally with:
+The React frontend is deployed to GitHub Pages using GitHub Actions.
 
-```text
-FastAPI API             ✓
-Root endpoint           ✓
-Health endpoint         ✓
-Food analysis endpoint  ✓
-Safety scoring          ✓
-Quality scoring         ✓
-Allergen detection      ✓
-Risk classification     ✓
-Automated tests         ✓
-Git repository          ✓
-GitHub synchronization  ✓
-```
+Production frontend:
 
-Current Git branch:
+https://mehreganfatemeh903-arch.github.io/FoodGuardAI/
 
-```text
-main
-```
+The Vite application uses the repository base path:
 
-Current verified commit:
+/FoodGuardAI/
 
-```text
-d9c2b9b
-```
+### Backend
+
+The FastAPI backend is deployed to FastAPI Cloud.
+
+Production API:
+
+https://foodguardai.fastapicloud.dev
+
+API documentation:
+
+https://foodguardai.fastapicloud.dev/docs
+
+## CI/CD
+
+Frontend deployment is automated through:
+
+.github/workflows/deploy-frontend.yml
+
+Changes pushed to the main branch can trigger the production frontend deployment workflow.
+
+## Project Status
+
+FoodGuardAI is currently a functional full-stack application with:
+
+- Production frontend
+- Production FastAPI backend
+- Frontend-to-backend API integration
+- Responsive user interface
+- SEO metadata
+- Favicon
+- Automated frontend deployment
+- Backend automated tests
+- Production API documentation
+- GitHub repository documentation
+
+## Roadmap
+
+Future improvements may include:
+
+- Advanced allergen detection
+- Expanded food safety knowledge base
+- More detailed ingredient analysis
+- User accounts and analysis history
+- Analytics dashboard
+- Improved ML-based risk prediction
+- Multilingual interface
+- Advanced reporting
+- Production monitoring and observability
+- Additional automated integration tests
+
+## Disclaimer
+
+FoodGuardAI is an analytical software project and should not be considered a substitute for professional medical, nutritional, regulatory, or food-safety advice.
+
+Food safety decisions involving allergies, contamination, or health risks should be verified using appropriate professional and regulatory guidance.
 
 ## License
 
-This project is currently intended for educational and development purposes.
+This project is currently provided for development and educational purposes.
+
+A commercial licensing model can be introduced as the product evolves.
+
+---
+
+FoodGuardAI - AI-powered food safety and quality analysis.
