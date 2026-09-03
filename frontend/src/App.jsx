@@ -1,7 +1,7 @@
-ï»¿import { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 
-const API_URL = "http://localhost:8000";
+const API_URL = "https://foodguardai.fastapicloud.dev"
 
 function App() {
   const [foodName, setFoodName] = useState("");
@@ -43,7 +43,7 @@ function App() {
       setResult(data);
     } catch (err) {
       console.error("FoodGuardAI API error:", err);
-      setError(err.message || "Ø®Ø·Ø§ÛŒ Ù†Ø§Ù…Ø´Ø®Øµ Ø¯Ø± Ø¯Ø±Ø®ÙˆØ§Ø³Øª API");
+      setError(err.message || "ÎØÇí äÇãÔÎÕ ÏÑ ÏÑÎæÇÓÊ API");
     } finally {
       setLoading(false);
     }
@@ -53,7 +53,7 @@ function App() {
     <main className="app">
       <header className="header">
         <div className="brand">
-          <div className="brand-icon">ğŸ›¡ï¸</div>
+          <div className="brand-icon">???</div>
 
           <div>
             <h1>FoodGuardAI</h1>
@@ -73,8 +73,8 @@ function App() {
         <h2>Food Safety Analysis</h2>
 
         <p>
-          Ù…ÙˆØ§Ø¯ ØºØ°Ø§ÛŒÛŒ Ø±Ø§ ÙˆØ§Ø±Ø¯ Ú©Ù†ÛŒØ¯ ØªØ§ Ø§ÛŒÙ…Ù†ÛŒØŒ Ú©ÛŒÙÛŒØªØŒ Ø¢Ù„Ø±Ú˜Ù†â€ŒÙ‡Ø§ Ùˆ Ø³Ø·Ø­ Ø±ÛŒØ³Ú©
-          Ø¨Ù‡â€ŒØµÙˆØ±Øª Ù‡ÙˆØ´Ù…Ù†Ø¯ Ø¨Ø±Ø±Ø³ÛŒ Ø´ÙˆØ¯.
+          ãæÇÏ ÛĞÇíí ÑÇ æÇÑÏ ˜äíÏ ÊÇ Çíãäí¡ ˜íİíÊ¡ ÂáÑäåÇ æ ÓØÍ ÑíÓ˜
+          ÈåÕæÑÊ åæÔãäÏ ÈÑÑÓí ÔæÏ.
         </p>
       </section>
 
@@ -82,20 +82,20 @@ function App() {
         <div className="card-header">
           <div>
             <h3>Analyze Your Food</h3>
-            <p>Ø§Ø·Ù„Ø§Ø¹Ø§Øª ØºØ°Ø§ Ùˆ Ù…ÙˆØ§Ø¯ ØªØ´Ú©ÛŒÙ„â€ŒØ¯Ù‡Ù†Ø¯Ù‡ Ø±Ø§ ÙˆØ§Ø±Ø¯ Ú©Ù†ÛŒØ¯.</p>
+            <p>ÇØáÇÚÇÊ ÛĞÇ æ ãæÇÏ ÊÔ˜íáÏåäÏå ÑÇ æÇÑÏ ˜äíÏ.</p>
           </div>
 
-          <span className="card-icon">ğŸ”</span>
+          <span className="card-icon">??</span>
         </div>
 
         <form onSubmit={analyzeFood}>
           <div className="form-group">
-            <label htmlFor="foodName">Ù†Ø§Ù… ØºØ°Ø§</label>
+            <label htmlFor="foodName">äÇã ÛĞÇ</label>
 
             <input
               id="foodName"
               type="text"
-              placeholder="Ù…Ø«Ù„Ø§Ù‹ Raw Chicken"
+              placeholder="ãËáÇğ Raw Chicken"
               value={foodName}
               onChange={(e) => setFoodName(e.target.value)}
               required
@@ -103,7 +103,7 @@ function App() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="ingredients">Ù…ÙˆØ§Ø¯ ØªØ´Ú©ÛŒÙ„â€ŒØ¯Ù‡Ù†Ø¯Ù‡</label>
+            <label htmlFor="ingredients">ãæÇÏ ÊÔ˜íáÏåäÏå</label>
 
             <textarea
               id="ingredients"
@@ -114,7 +114,7 @@ function App() {
             />
 
             <span className="input-help">
-              Ù…ÙˆØ§Ø¯ Ø±Ø§ Ø¨Ø§ Ú©Ø§Ù…Ø§ (,) Ø§Ø² ÛŒÚ©Ø¯ÛŒÚ¯Ø± Ø¬Ø¯Ø§ Ú©Ù†ÛŒØ¯.
+              ãæÇÏ ÑÇ ÈÇ ˜ÇãÇ (,) ÇÒ í˜ÏíÑ ÌÏÇ ˜äíÏ.
             </span>
           </div>
 
@@ -126,11 +126,11 @@ function App() {
             {loading ? (
               <>
                 <span className="spinner"></span>
-                Ø¯Ø± Ø­Ø§Ù„ ØªØ­Ù„ÛŒÙ„...
+                ÏÑ ÍÇá ÊÍáíá...
               </>
             ) : (
               <>
-                <span>ğŸ”</span>
+                <span>??</span>
                 Analyze Food
               </>
             )}
@@ -140,7 +140,7 @@ function App() {
 
       {error && (
         <div className="error">
-          <span>âš ï¸</span>
+          <span>??</span>
 
           <div>
             <strong>Analysis Error</strong>
@@ -165,14 +165,14 @@ function App() {
 
           <div className="scores">
             <div className="score-card">
-              <span className="score-icon">ğŸ›¡ï¸</span>
+              <span className="score-icon">???</span>
               <span className="score-title">Safety Score</span>
               <strong>{result.safety_score}</strong>
               <small>/ 100</small>
             </div>
 
             <div className="score-card">
-              <span className="score-icon">â­</span>
+              <span className="score-icon">?</span>
               <span className="score-title">Quality Score</span>
               <strong>{result.quality_score}</strong>
               <small>/ 100</small>
@@ -182,14 +182,14 @@ function App() {
           {result.recommendations.length > 0 ? (
             <div className="recommendations">
               <div className="recommendations-title">
-                <span>ğŸ’¡</span>
+                <span>??</span>
                 <h3>Recommendations</h3>
               </div>
 
               <ul>
                 {result.recommendations.map((item, index) => (
                   <li key={index}>
-                    <span>âœ“</span>
+                    <span>?</span>
                     {item}
                   </li>
                 ))}
@@ -197,7 +197,7 @@ function App() {
             </div>
           ) : (
             <div className="safe">
-              <span>âœ“</span>
+              <span>?</span>
 
               <div>
                 <strong>No Immediate Safety Concerns</strong>
@@ -213,7 +213,7 @@ function App() {
       <footer>
         <strong>FoodGuardAI</strong>
         <span>v0.1.0</span>
-        <span>Â·</span>
+        <span>·</span>
         <span>FastAPI + React</span>
       </footer>
     </main>
