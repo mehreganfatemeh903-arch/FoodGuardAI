@@ -70,7 +70,7 @@ function App() {
         <h2>Food Safety Analysis</h2>
 
         <p>
-          مواد غذایی را وارد کنید تا ایمنی کیفیت آلرنها و سطح ریسک بهصورت هوشمند بررسی شود.
+          مواد غذایی را وارد کنید تا ایمنی، کیفیت، آلرژن‌ها و سطح ریسک به‌صورت هوشمند بررسی شود.
         </p>
       </section>
 
@@ -78,7 +78,7 @@ function App() {
         <div className="card-header">
           <div>
             <h3>Analyze Your Food</h3>
-            <p>اطلاعات غذا و مواد تشکیلدهنده را وارد کنید.</p>
+            <p>اطلاعات غذا و مواد تشکیل‌دهنده را وارد کنید.</p>
           </div>
 
           <span className="card-icon">🔍</span>
@@ -99,7 +99,7 @@ function App() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="ingredients">مواد تشکیلدهنده</label>
+            <label htmlFor="ingredients">مواد تشکیل‌دهنده</label>
 
             <textarea
               id="ingredients"
