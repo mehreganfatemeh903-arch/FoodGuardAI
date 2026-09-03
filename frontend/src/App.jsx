@@ -130,7 +130,7 @@ function App() {
               </>
             ) : (
               <>
-                <span>??</span>
+                <span>💡</span>
                 Analyze Food
               </>
             )}
@@ -140,7 +140,7 @@ function App() {
 
       {error && (
         <div className="error">
-          <span>??</span>
+          <span>💡</span>
 
           <div>
             <strong>Analysis Error</strong>
@@ -165,14 +165,14 @@ function App() {
 
           <div className="scores">
             <div className="score-card">
-              <span className="score-icon">???</span>
+              <span className="score-icon">🛡️</span>
               <span className="score-title">Safety Score</span>
               <strong>{result.safety_score}</strong>
               <small>/ 100</small>
             </div>
 
             <div className="score-card">
-              <span className="score-icon">?</span>
+              <span className="score-icon">✨</span>
               <span className="score-title">Quality Score</span>
               <strong>{result.quality_score}</strong>
               <small>/ 100</small>
@@ -182,14 +182,14 @@ function App() {
           {result.recommendations.length > 0 ? (
             <div className="recommendations">
               <div className="recommendations-title">
-                <span>??</span>
+                <span>💡</span>
                 <h3>Recommendations</h3>
               </div>
 
               <ul>
                 {result.recommendations.map((item, index) => (
                   <li key={index}>
-                    <span>?</span>
+                    <span>✨</span>
                     {item}
                   </li>
                 ))}
@@ -197,7 +197,7 @@ function App() {
             </div>
           ) : (
             <div className="safe">
-              <span>?</span>
+              <span>✨</span>
 
               <div>
                 <strong>No Immediate Safety Concerns</strong>
