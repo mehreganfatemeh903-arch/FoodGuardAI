@@ -1,4 +1,4 @@
-﻿from fastapi import FastAPI
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -16,7 +16,8 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",
+              "http://localhost:5173",
+        "https://mehreganfatemeh903-arch.github.io",
         "http://127.0.0.1:5173",
         "http://localhost:5174",
         "http://127.0.0.1:5174",
@@ -45,4 +46,6 @@ def health():
         "service": settings.app_name,
         "environment": settings.app_env,
     }
+
+
 
