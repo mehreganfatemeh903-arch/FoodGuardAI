@@ -43,7 +43,7 @@ function App() {
       setResult(data);
     } catch (err) {
       console.error("FoodGuardAI API error:", err);
-      setError(err.message || "ฮุวํ ไวใิฮี ฯั ฯัฮๆวำส API");
+      setError(err.message || "ุฎุทุงู ูุงู…ุดุฎุต ุฏุฑ ุฏุฑุฎูุงุณุช API");
     } finally {
       setLoading(false);
     }
@@ -73,8 +73,8 @@ function App() {
         <h2>Food Safety Analysis</h2>
 
         <p>
-          ใๆวฯ Ûะวํํ ัว ๆวัฯ ไํฯ สว วํใไํก ํÝํสก ยแัไๅว ๆ ำุอ ัํำ
-          ศๅีๆัส ๅๆิใไฯ ศััำํ ิๆฯ.
+          ู…ูุงุฏ ุบุฐุงูู ุฑุง ูุงุฑุฏ ฺฉููุฏ ุชุง ุงูู…ููุ ฺฉูููุชุ ุขูุฑฺูโ€ูุง ู ุณุทุญ ุฑูุณฺฉ
+          ุจูโ€ุตูุฑุช ููุดู…ูุฏ ุจุฑุฑุณู ุดูุฏ.
         </p>
       </section>
 
@@ -82,7 +82,7 @@ function App() {
         <div className="card-header">
           <div>
             <h3>Analyze Your Food</h3>
-            <p>วุแวฺวส Ûะว ๆ ใๆวฯ สิํแฯๅไฯๅ ัว ๆวัฯ ไํฯ.</p>
+            <p>ุงุทูุงุนุงุช ุบุฐุง ู ู…ูุงุฏ ุชุดฺฉููโ€ุฏููุฏู ุฑุง ูุงุฑุฏ ฺฉููุฏ.</p>
           </div>
 
           <span className="card-icon">??</span>
@@ -90,12 +90,12 @@ function App() {
 
         <form onSubmit={analyzeFood}>
           <div className="form-group">
-            <label htmlFor="foodName">ไวใ Ûะว</label>
+            <label htmlFor="foodName">ูุงู… ุบุฐุง</label>
 
             <input
               id="foodName"
               type="text"
-              placeholder="ใหแว๐ Raw Chicken"
+              placeholder="ู…ุซูุงู Raw Chicken"
               value={foodName}
               onChange={(e) => setFoodName(e.target.value)}
               required
@@ -103,7 +103,7 @@ function App() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="ingredients">ใๆวฯ สิํแฯๅไฯๅ</label>
+            <label htmlFor="ingredients">ู…ูุงุฏ ุชุดฺฉููโ€ุฏููุฏู</label>
 
             <textarea
               id="ingredients"
@@ -114,7 +114,7 @@ function App() {
             />
 
             <span className="input-help">
-              ใๆวฯ ัว ศว วใว (,) วา ํฯํั ฬฯว ไํฯ.
+              ู…ูุงุฏ ุฑุง ุจุง ฺฉุงู…ุง (,) ุงุฒ ูฺฉุฏูฺฏุฑ ุฌุฏุง ฺฉููุฏ.
             </span>
           </div>
 
@@ -126,7 +126,7 @@ function App() {
             {loading ? (
               <>
                 <span className="spinner"></span>
-                ฯั อวแ สอแํแ...
+                ุฏุฑ ุญุงู ุชุญููู...
               </>
             ) : (
               <>
@@ -213,7 +213,7 @@ function App() {
       <footer>
         <strong>FoodGuardAI</strong>
         <span>v0.1.0</span>
-        <span>ท</span>
+        <span>ยท</span>
         <span>FastAPI + React</span>
       </footer>
     </main>
